@@ -21,15 +21,15 @@ class Program
          
         threadA.Join();
         threadB.Join();
-        if (counterA < counterB)
+        if (counterA < 50)
         {
             Console.WriteLine("Gewonnen hat Thread B mit: " + counterB);
         }
-        else if (counterB < counterA)
+        else if (counterA > 50)
         {
             Console.WriteLine("Gewonnen hat Thread A mit: " + counterA);
         }
-        else if(counterA == counterB)
+        else if(counterA == 50)
         {
             Console.WriteLine("Unentschieden! Beide Zähler sind bei: " + counterA);
         }
