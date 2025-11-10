@@ -7,6 +7,7 @@ class Program
 {
     public static void Main(string[] args)
     {
+        List<Thread> threads = new List<Thread>();
         Console.WriteLine("Übung 2: Race Condition – Bankkonto");
         Console.WriteLine("==========================================\n");
         
@@ -15,10 +16,16 @@ class Program
         Console.WriteLine($"Startkontostand: {account.GetBalance()} EUR\n");
         for (int i = 0; i < 10; i++)
         {
-            var t = new Thread(() => PerformBankOperations(account));
+            Thread t = new Thread(() => PerformBankOperations(account));
+            threads.Add(t);
             t.Start();
+
+        }
+        foreach (var t in threads)
+        {
             t.Join();
         }
+        Console.WriteLine("Endkontostand nach allen Operationen: " + account.GetBalance() + " EUR");
     }
     
     private static void PerformBankOperations(BankAccount account)
@@ -28,7 +35,7 @@ class Program
             Thread.Sleep(10);
             account.Withdraw(150);
         
-        Console.WriteLine($"Endkontostand: {account.GetBalance()} EUR");
+        Console.WriteLine($"Kontostand nach Operationen: {account.GetBalance()} EUR");
     }
 }
 
