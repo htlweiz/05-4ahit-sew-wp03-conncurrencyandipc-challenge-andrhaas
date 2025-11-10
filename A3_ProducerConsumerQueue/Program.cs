@@ -12,28 +12,30 @@ class Program
         Console.WriteLine("Übung 3: Producer-Consumer");
         Console.WriteLine("==========================================\n");
         List<Producer> producers = new List<Producer>();
-        Queue<Producer> queue = new Queue<Producer>();
+        ConcurrentQueue<int> queue = new ConcurrentQueue<int>();
          for (int i = 0; i < 5; i++)
         {
-            Producer p = new Producer(i);
+            Producer p = new Producer(i, queue);
             
             producers.Add(p);
         }
-        foreach (var p in producers)
-        {
-            queue.Enqueue(p);
-        }
+       
 
         
        
 
         Console.WriteLine("Producer und Consumer gestartet...\n");
 
-       while (queue.Count < 50)
-       {
-            Thread.Sleep(1000);
-            break;
-       }
+        while (true)
+        {
+            Console.WriteLine($"Aktuelle Queue-Größe: {queue.Count}");
+            if (queue.Count > 50)
+            {
+                break;
+            }
+            Thread.Sleep(100);
+        }         
+       
        
 
       
