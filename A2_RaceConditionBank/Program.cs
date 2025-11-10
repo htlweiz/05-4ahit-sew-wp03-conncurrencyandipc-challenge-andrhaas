@@ -25,16 +25,16 @@ class Program
         {
             t.Join();
         }
-        Console.WriteLine("Endkontostand nach allen Operationen: " + account.GetBalance() + " EUR");
+        Console.WriteLine("Endkontostand: " + account.GetBalance() + " EUR");
     }
     
     private static void PerformBankOperations(BankAccount account)
     {
         
             account.Deposit(100);
-            Thread.Sleep(10);
+            Thread.Sleep(100);
             account.Withdraw(150);
-        
+            
         Console.WriteLine($"Kontostand nach Operationen: {account.GetBalance()} EUR");
     }
 }
