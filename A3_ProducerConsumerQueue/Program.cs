@@ -24,23 +24,19 @@ class Program
             queue.Enqueue(p);
         }
 
-        if (queue.Count > 50)
-        {
-            queue.Dequeue().Stop();
-        }
+        
        
 
         Console.WriteLine("Producer und Consumer gestartet...\n");
 
-        // Überwachung: Jede Sekunde Queue-Füllstand ausgeben und auf >50 prüfen
-        
-        // TODO
-
-
-        // Alle Producer stoppen
+       while (queue.Count < 50)
+       {
+            Thread.Sleep(1000);
+            break;
+       }
        
 
-        // Consumer stoppen
+      
        
        
     }
