@@ -31,8 +31,11 @@ public class BankAccount
       
     }
     
-    public int GetBalance() 
+    public int GetBalance()
     {
-        return balance;
+        
+            return balance;
+        
+        
     }
 }
